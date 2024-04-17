@@ -6,32 +6,33 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(books => {
                 const mostRecentBook = findMostRecentBook(books);
                 // 🪲 Bug: Incorrect element ID
+             
                document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
+    })
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
-        const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
+        const jsConcepts = new Set(['closure', 'scope', 'hoisting','async']);
         // 🪲 Bug: What's mssing from JS concepts?
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
+        const commonConcepts = findIntersection(jsConcepts,reactConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
     // 🪲 Bug: Asynchronous function ?
-    document.getElementById("solveRoom3").addEventListener("click", () => {  //addedd async
-        fetch('directions.json') 
+    document.getElementById("solveRoom3").addEventListener("click", () => {
+        fetch('directions.json')
             .then(response => response.json())
             .then(directions => {
                 navigateLabyrinth(directions)
                     .then(message => {
-                        // 🪲 Bug: Incorrect method
                         document.getElementById("room3Result").textContent = message;
                     });
             });
     });
-});
+
 
 function findMostRecentBook(books) {
     // 🪲 Bug: Logic error
@@ -40,7 +41,7 @@ function findMostRecentBook(books) {
 
 function findIntersection(setA, setB) {
     // 🪲 Bug: Incorrect logic
-    const intersection = ()=>{if(setA===setB){}}
+ const intersection = setA.intersection(setB)
     return intersection;
 }
 
